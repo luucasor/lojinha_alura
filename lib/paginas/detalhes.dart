@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lojinha_alura/modelos/movel.dart';
 import 'package:lojinha_alura/widgets/appbar_customizada.dart';
+import 'package:lojinha_alura/widgets/card_detalhes.dart';
 
 class Detalhes extends StatelessWidget {
   final Movel? movel;
@@ -23,11 +24,13 @@ class Detalhes extends StatelessWidget {
           titulo: '',
           ehPaginaCarrinho: false,
         ),
-        body: TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/carrinho');
-          },
-          child: Text('Agora para a página carrinho'),
+        body: Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            margin: EdgeInsets.all(16),
+            height: 200,
+            child: CardDetalhes(movel: movel),
+          ),
         ),
       ),
     );
