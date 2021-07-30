@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lojinha_alura/paginas/carrinho.dart';
-import 'package:lojinha_alura/paginas/detalhes.dart';
 import 'package:lojinha_alura/widgets/appbar_customizada.dart';
+import 'package:lojinha_alura/widgets/grid_produtos.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,9 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: {
-        '/carrinho': (context) => Carrinho()
-      },
+      routes: {'/carrinho': (context) => Carrinho()},
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -80,17 +78,11 @@ class Inicio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBarCustomizada(
+        backgroundColor: Colors.grey[200],
+        appBar: AppBarCustomizada(
           titulo: 'Lojinha Alura',
           ehPaginaCarrinho: false,
-      ),
-      body: TextButton(
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Detalhes()));
-          },
-          child: Text('Vamos para os detalhes')),
-    );
+        ),
+        body: GridProdutos(moveis: moveis));
   }
 }
