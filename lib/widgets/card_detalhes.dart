@@ -16,7 +16,7 @@ class CardDetalhes extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextoDetalhes(texto: movel!.titulo),
+          TextoDetalhes(texto: movel!.titulo, estilo: Theme.of(context).textTheme.headline1,),
           TextoDetalhes(texto: movel!.descricao),
           Container(
             margin: EdgeInsets.only(left: 16, right: 16, bottom: 8),
@@ -25,6 +25,7 @@ class CardDetalhes extends StatelessWidget {
               children: [
                 Text(
                   formatacaoReais.format(movel!.preco),
+                  style: Theme.of(context).textTheme.headline1,
                 ),
                 TextButton(
                   style: ButtonStyle(
