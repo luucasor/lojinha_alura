@@ -14,23 +14,30 @@ class CardDetalhes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextoDetalhes(texto: movel!.titulo),
           TextoDetalhes(texto: movel!.descricao),
-          Row(
-            children: [
-              Text(
-                formatacaoReais.format(movel!.preco),
-              ),
-              TextButton(
+          Container(
+            margin: EdgeInsets.only(left: 16, right: 16, bottom: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  formatacaoReais.format(movel!.preco),
+                ),
+                TextButton(
                   style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                    backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryColor),
-                  ),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Theme.of(context).primaryColor)),
                   onPressed: () {},
-                  child: Text('Comprar'),
-              )
-            ],
+                  child: Text(
+                    'Comprar',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),
