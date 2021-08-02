@@ -24,21 +24,63 @@ class ListaCarrinho extends StatelessWidget {
                   image: AssetImage('utilidades/assets/imagens/${movel!.foto}'),
                   height: 92,
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(movel!.titulo ?? ''),
-                      Text('${movel!.preco}'),
-                      Text('${item.quantidade}'),
-                    ],
+                Expanded(
+                  child: Container(
+                    height: 92,
+                    margin: EdgeInsets.only(left: 10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(movel!.titulo ?? ''),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('${movel!.preco}'),
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () => _aumentarQuantidade(item),
+                                  child: Container(
+                                    margin: EdgeInsets.all(8),
+                                    child: Icon(
+                                      Icons.add,
+                                      size: 14,
+                                    ),
+                                  ),
+                                ),
+                                Text('${item.quantidade}'),
+                                GestureDetector(
+                                  onTap: () => _diminuirQuantidade(item),
+                                  child: Container(
+                                    margin: EdgeInsets.all(8),
+                                    child: Icon(
+                                      Icons.remove,
+                                      size: 14,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
-            ),),
+            ),
+          ),
         );
       },
     );
+  }
+
+  _aumentarQuantidade(ItemCarrinho item){
+    item.quantidade++;
+  }
+
+  _diminuirQuantidade(ItemCarrinho item){
+    item.quantidade--;
   }
 }

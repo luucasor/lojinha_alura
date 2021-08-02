@@ -3,7 +3,7 @@ import 'package:lojinha_alura/modelos/movel.dart';
 
 class ItemCarrinho {
   final Movel? movel;
-  int? quantidade;
+  int quantidade;
 
-  ItemCarrinho({this.movel, this.quantidade});
+  ItemCarrinho({this.movel, required this.quantidade});
 }
