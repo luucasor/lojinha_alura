@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
           ),
           headline5: TextStyle(
               fontSize: 20,
-              fontWeight: FontWeight.w200,
+              fontWeight: FontWeight.w300,
               color: Colors.black
           ),
         )
@@ -54,10 +54,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Inicio extends StatelessWidget {
-
+class Inicio extends StatefulWidget {
   static List<ItemCarrinho> itensCarrinho = [];
 
+  @override
+  _InicioState createState() => _InicioState();
+}
+
+class _InicioState extends State<Inicio> {
   final List moveis = [
     {
       "titulo": "Mesa",
@@ -148,9 +152,13 @@ class Inicio extends StatelessWidget {
               ],
             ),
             Flexible(
-              child: GridProdutos(moveis: moveis),
+              child: GridProdutos(atualiza: atualiza, moveis: moveis),
             )
           ],
         ));
+  }
+
+  void atualiza(){
+    setState(() {});
   }
 }

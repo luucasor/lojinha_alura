@@ -17,31 +17,30 @@ class _CarrinhoState extends State<Carrinho> {
   Widget build(BuildContext context) {
     int valorTotal = _calcularTotal();
     return Scaffold(
-      bottomNavigationBar: Container(
-        color: Colors.white,
-        height: 80,
-        padding: EdgeInsets.all(20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Total',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Text(
-              formatacaoReais.format(valorTotal),
-              style: Theme.of(context).textTheme.headline5,
-            ),
-          ],
+        bottomNavigationBar: Container(
+          color: Colors.white,
+          height: 80,
+          padding: EdgeInsets.all(20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Total',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              Text(
+                formatacaoReais.format(valorTotal),
+                style: Theme.of(context).textTheme.headline5,
+              ),
+            ],
+          ),
         ),
-      ),
-      backgroundColor: Colors.grey[200],
-      appBar: AppBarCustomizada(
-        titulo: 'Carrinho',
-        ehPaginaCarrinho: true,
-      ),
-      body: ListaCarrinho(atualiza: atualiza),
-    );
+        backgroundColor: Colors.grey[200],
+        appBar: AppBarCustomizada(
+          titulo: 'Carrinho',
+          ehPaginaCarrinho: true,
+        ),
+        body: _construirTela());
   }
 
   void atualiza() {
@@ -54,7 +53,17 @@ class _CarrinhoState extends State<Carrinho> {
           .map((item) => item.movel!.preco * item.quantidade)
           .reduce((precoAtual, precoNovo) => precoAtual + precoNovo);
     }
-
     return 0;
+  }
+
+  Widget _construirTela() {
+    if (Inicio.itensCarrinho.isNotEmpty) {
+      return ListaCarrinho(atualiza: atualiza);
+    }
+    return Container(
+      height: double.infinity,
+      alignment: Alignment.center,
+      child: Text('Nenhum item no carrinho'),
+    );
   }
 }
