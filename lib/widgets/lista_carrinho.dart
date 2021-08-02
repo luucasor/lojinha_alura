@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:lojinha_alura/main.dart';
 import 'package:lojinha_alura/modelos/item_carrinho.dart';
 import 'package:lojinha_alura/modelos/movel.dart';
@@ -14,6 +15,7 @@ class ListaCarrinho extends StatefulWidget {
 }
 
 class _ListaCarrinhoState extends State<ListaCarrinho> {
+  final formatacaoReais = NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
   final List<ItemCarrinho> carrinho = Inicio.itensCarrinho;
 
   @override
@@ -29,9 +31,12 @@ class _ListaCarrinhoState extends State<ListaCarrinho> {
             clipBehavior: Clip.hardEdge,
             child: Row(
               children: [
-                Image(
-                  image: AssetImage('utilidades/assets/imagens/${movel!.foto}'),
-                  height: 92,
+                Expanded(
+                  child: Image(
+                    image: AssetImage('utilidades/assets/imagens/${movel!.foto}'),
+                    height: 92,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Expanded(
                   child: Container(
@@ -41,11 +46,13 @@ class _ListaCarrinhoState extends State<ListaCarrinho> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(movel!.titulo ?? ''),
+                        Text(movel!.titulo ?? '',
+                          style: Theme.of(context).textTheme.headline3,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('${movel!.preco}'),
+                            Text(formatacaoReais.format(movel!.preco)),
                             Row(
                               children: [
                                 GestureDetector(
@@ -85,14 +92,14 @@ class _ListaCarrinhoState extends State<ListaCarrinho> {
     );
   }
 
-  _aumentarQuantidade(ItemCarrinho item){
+  void _aumentarQuantidade(ItemCarrinho item){
     setState(() {
       item.quantidade++;
       widget.atualiza();
     });
   }
 
-  _diminuirQuantidade(ItemCarrinho item){
+  void _diminuirQuantidade(ItemCarrinho item){
     if(item.quantidade > 1){
       setState(() {
         item.quantidade--;
@@ -103,7 +110,7 @@ class _ListaCarrinhoState extends State<ListaCarrinho> {
     }
   }
 
-  _removerMovel(ItemCarrinho item){
+  void _removerMovel(ItemCarrinho item){
     setState(() {
       Inicio.itensCarrinho.remove(item);
       widget.atualiza();
