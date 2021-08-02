@@ -1,10 +1,10 @@
 class Movel {
   String? titulo;
-  int? preco;
+  int preco = 0;
   String? foto;
   String? descricao;
 
-  Movel({this.titulo, this.preco, this.foto = "", this.descricao});
+  Movel({this.titulo, required this.preco, this.foto = "", this.descricao});
 
   Movel.fromJson(Map<String, dynamic> json) {
     titulo = json['titulo'];

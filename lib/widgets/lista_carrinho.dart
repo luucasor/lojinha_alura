@@ -46,13 +46,13 @@ class _ListaCarrinhoState extends State<ListaCarrinho> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(movel!.titulo ?? '',
+                        Text(movel.titulo ?? '',
                           style: Theme.of(context).textTheme.headline3,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(formatacaoReais.format(movel!.preco)),
+                            Text(formatacaoReais.format(movel.preco)),
                             Row(
                               children: [
                                 GestureDetector(
