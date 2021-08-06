@@ -19,19 +19,49 @@ class _CarrinhoState extends State<Carrinho> {
     return Scaffold(
         bottomNavigationBar: Container(
           color: Colors.white,
-          height: 80,
+          height: 160,
           padding: EdgeInsets.all(20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Column(
             children: [
-              Text(
-                'Total',
-                style: Theme.of(context).textTheme.headline4,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Total',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  Text(
+                    formatacaoReais.format(valorTotal),
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                ],
               ),
-              Text(
-                formatacaoReais.format(valorTotal),
-                style: Theme.of(context).textTheme.headline5,
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    width: 300,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(200),
+                            bottomLeft: Radius.circular(200)
+                        )
+                    ),
+                    child: TextButton(
+                      style: ButtonStyle(
+                        alignment: Alignment.center,
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            Theme.of(context).primaryColor)
+                      ),
+                      onPressed: null,
+                      child: Text('Finalizar compra'),
+                    ),
+                  )
+                ],
+              )
             ],
           ),
         ),
@@ -63,7 +93,13 @@ class _CarrinhoState extends State<Carrinho> {
     return Container(
       height: double.infinity,
       alignment: Alignment.center,
-      child: Text('Nenhum item no carrinho'),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.remove_shopping_cart, size: 100,),
+          Text('Carrinho vazio', style: Theme.of(context).textTheme.headline1,),
+        ],
+      ),
     );
   }
 }
